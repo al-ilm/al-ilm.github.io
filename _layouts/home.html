@@ -31,7 +31,7 @@ layout: default-blog
     <!-- Pagination links -->
     <div class="pagination">
         {% if paginator.previous_page %}
-            <button onclick='javascript:location.href="{{ paginator.previous_page_path }}"' class="previous"><i class="fas fa-chevron-circle-left" style="margin: 0 5px 0 0; font-size: 12px;"></i>Previous</button>
+            <button onclick='javascript:location.href="{{ paginator.previous_page_path }}"' class="previous"><i class="fas fa-chevron-circle-left" style="margin: 0 5px 0 0; font-size: 12.5px;"></i>Previous</button>
         {% else %}
 
         {% endif %}
@@ -39,7 +39,7 @@ layout: default-blog
         <span class="page_number ">Page: {{ paginator.page }} / {{ paginator.total_pages }}</span>
 
         {% if paginator.next_page %}
-            <button onclick='javascript:location.href="{{ paginator.next_page_path }}"' class="next">Next<i class="fas fa-chevron-circle-right" style="margin: 0 0 0 5px; font-size: 12px;"></i></button>
+            <button onclick='javascript:location.href="{{ paginator.next_page_path }}"' class="next">Next<i class="fas fa-chevron-circle-right" style="margin: 0 0 0 5px; font-size: 12.5px;"></i></button>
         {% else %}
         {% endif %}
     </div>
