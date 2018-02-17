@@ -7,9 +7,10 @@ html {
         
         a {
             text-decoration: none;    
+            color: $link-color;
         }
 
-        button {
+        button, a.previous-article, a.next-article {
             padding: 1px 7px;
             background-color: #000000;
             color: #ffffff;
@@ -21,7 +22,7 @@ html {
             transition: all .3s ease-in-out;
         }
 
-        button:hover {
+        button:hover, a.previous-article:hover, a.next-article:hover  {
             background-color: #000000;
             color: $sb-nav-color;
         }

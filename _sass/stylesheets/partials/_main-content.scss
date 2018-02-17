@@ -40,7 +40,14 @@
 
         .next {
             margin: 0 0 0 10px;
-            background-color: #000000;
+        }
+
+        .previous-article {
+            margin: 0 5px 0 0;
+        }
+
+        .next-article {
+            margin: 0 0 0 5px;
         }
 
         button.more-button {
@@ -161,38 +168,6 @@
             text-align: right;
         }
 
-        .quran, .bible, .bible-hebrew {
-            display: block;
-            color: $quran-color;
-        }
-
-        .quran {
-            font-size: 20px;
-            line-height: 250%;
-            text-align: right;
-            font-family: 'Amiri', serif;
-        }
-
-        .bible {
-            margin: 0 0 15px 0;
-            font-size: $font-size-body;
-            line-height: $body-line_height;
-            font-family: 'Noto Serif', serif;
-        }
-
-        .bible-hebrew {
-            margin: 0 0 15px 0;
-            font-size: 23px;
-            line-height: $body-line_height;
-            font-family: 'Frank Ruhl Libre', serif;
-            text-align: right;
-        }
-
-        .emphasize {
-            color: $quran-color;
-            font-weight: bold;
-        }
-
         .translation {
             font-family: $font-quran-translation;
             display: block;
@@ -266,7 +241,7 @@
             font-family: $font-post-meta;
             font-size: $font-size-post-meta;
             visibility: hidden;
-            width: 300px;
+            width: 150px;
             background-color: #555;
             color: #fff;
             text-align: center;
@@ -277,7 +252,7 @@
             z-index: 1;
             bottom: 125%;
             left: 50%;
-            margin-left: -150px;
+            margin-left: -75px;
             opacity: 0;
             transition: opacity 0.3s;
         }
