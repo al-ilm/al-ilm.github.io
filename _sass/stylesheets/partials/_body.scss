@@ -8,10 +8,14 @@ html {
         a {
             text-decoration: none;    
             color: $link-color;
+            padding: 0;
+        }
+
+        button {
+            padding: 1px 7px;
         }
 
         button, a.previous-article, a.next-article {
-            padding: 1px 7px;
             background-color: #000000;
             color: #ffffff;
 
