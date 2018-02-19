@@ -2,15 +2,43 @@
 layout: post
 title:  "Introduction to Hypothesis Testing"
 date:   2018-2-13 1:00:00 +0800
-categories: Statistics Inference Hypothesis Test Introduction
+categories: Statistics Inference Hypothesis-Test Introduction
 comments: true
 ---
-<span class="tooltip">Alhamdulillah!<span class="tooltiptext">Arabic for "Praise be to God", Muslim common phrase.</span></span>
-<div class="reference">    
-    <ol>
-        <li>Abu Zakariya (2017). Jesus: Man, Messenger, Messiah. IERA Conveying the Call. ISBN: 978-1-910952-03-0.</li>
-        <li>The Religion of Islam (2007). <a href="https://www.islamreligion.com/articles/621/viewall/story-of-jesus-and-mary-in-holy-quran/">The Story of Jesus and Mary in the Holy Quran</a>. Last Modified 2014 and 2017, Retrieved February 4, 2018.</li>
-        <li>The Qur'an - Arabic Text with Corresponding English Translation (1997). Saheeh International, Abdulqasim Publishing House. ISBN: 9960-792-63-3, Riyadh.</li>
-        <li>Bible Study (2018). <a href="https://www.olivetree.com/">Olive Tree Bible Software</a>.</li>
-    </ol>
-</div>
+Data collection and statistical inference are processes we often do in scientific research,
+and by inference we mean generalization of the sample estimates to the population. For example, if I want to estimate the 
+number of hours spent by the teenagers on their smartphone in my community, the first thing I need to do is to take <i>n</i> random samples of these teenagers in the population,
+monitor the number of hours they spent, and then take the average of it. The average, say 5 hrs/day, in this case is our estimate for the population
+parameter which is the average hours spent. This type of sample estimate is called <b>point estimate</b>.
+<p>
+    While the point estimate above gives us some understanding of the average number of hours spent by the teenagers in the population, we can further extract 
+    insights by doing some <b>statistical test</b>. Suppose we extend the above problem and accommodate the idea that the 5 hrs/day is the average number of hours spent
+    by the teenagers on their smartphone five years ago. The question is, is 5 hrs/day still holds today? That is, we want to test our assumption or in this case our null
+    hypothesis that
+    <div class="question">    
+        The number of hours spent by the teenagers is still 5 hrs/day,
+    </div>    
+</p>
+<p>
+    against the alternative hypothesis that,
+    <div class="question">    
+        The number of hours spent by the teenagers is more than 5 hrs/day.
+    </div>    
+</p>
+<p>
+    In order to answer this question, the obvious solution is to go out and take <i>n</i> random samples of teenagers and compute the average hours they spent on their 
+    smartphones. Suppose this time we observed the average hours to be 8 hrs/day, is this enough for us to say that there is a change already in the 
+    number of hours spent by the teenagers? You might say, Yes, because it is different already from 5 hrs/day; but no, since we are basing this from our
+    random sample, and 5 hrs/day might still holds but we only obtain this difference because of the sampling error. If we were to repeatedly do the resampling,
+    and take the average hours, we might still converge to mean average hours of 5 hrs/day in our sampling distribution if the null hypothesis is true. So the question is, how likely or unlikely is 
+    our sample assuming the null hypothesis is true. This concept of statistical test is specifically known as <b>Hypothesis</b> or <b>Significance</b> testing.
+</p>
+<!-- <p>
+    <div class="question-label-wrapper">
+        <span class="question-label">What is Hypothesis Testing</span>
+    </div>    
+    <div class="question">    
+        Consider a situation wherein you 
+        Suppose you want to test whetherSuppose you are a judge, and you want to know whether the suspect is not guilty or guilty of the crime.
+    </div>    
+</p> -->
