@@ -1,6 +1,91 @@
 @mixin site-main-content() {
     main.site-main-content {
 
+        code {
+            display: inline-block;
+            background-color: rgb(247, 247, 247);
+            color: rgb(206, 106, 39);
+            padding: 0px 5px;
+            border: 1px solid rgb(204, 204, 204);
+            border-radius: 2px;
+            font-family: $font-code;
+            font-size: 14px;
+        }
+
+        div.code-container {
+            .code-label-container {
+                position: relative;
+                float: left;
+            }
+
+            .code-label {
+                // margin: 0; padding: 0;
+                // display: inline;
+                // background-color: #000000;
+                // color: $font-color-white;
+                // font-family: $font-post-meta;
+                // font-size: $font-size-post-meta;
+                -webkit-transform: rotate(-90deg) !important;
+                -moz-transform: rotate(-90deg) !important;
+                -o-transform: rotate(-90deg) !important;
+                -ms-transform: rotate(-90deg) !important;
+                transform: rotate(-90deg) !important;
+            }
+            div.code-snippet {
+                clear: right;
+                .gist {
+                    margin: 0; padding: 0;
+                }
+            }   
+        }
+
+        div.gist {
+            margin: 15px 0;
+
+            div.gist-data {
+                border-bottom: 0px;
+            }
+
+            div.gist-meta {
+                display: none;
+            }
+        }
+
+        img.figures {
+            width: 700px; 
+            margin: 0 0 -10px 0;
+        }
+
+        div.quote {
+            padding: 10px;
+            margin: 15px 0;
+            background-color: rgba(0, 0, 0, .05);
+        }
+
+        .with-bottom-border {
+            border-left: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        div.figure-wrapper {
+            display: block;
+            margin: 30px 0;
+            background-color: rgba(0, 0, 0, 1);
+            color: $font-color-white;
+            div.figure-caption {
+                display: block;
+                padding: 2px 10px;
+                font-size: $font-size-post-meta;
+                font-family: $font-post-meta;
+                text-align: right;
+                span.website-label {
+                    float: left;
+                }
+                span.caption {
+                    clear: right;
+                }
+            }    
+        }
+        
         div.post-header {
             display: block !important;
         }
@@ -86,12 +171,12 @@
             }
         }
 
-        div.with-left-border, div.question, div.question-christian, div.reference {
+        div.with-left-border, div.question, div.section3, div.reference {
             padding: 10px;
             border-left: 2px solid rgba(0, 0, 0, .1);
         }
 
-        div.with-top-border, div.answer {
+        div.with-top-border, div.section2 {
             padding: 10px 0 0 0;
             border-top: 2px solid rgba(0, 0, 0, .1);
         }
@@ -108,53 +193,51 @@
                 padding: 0 0 0 15px;
             }
         }
-
-        div.question-christian {
-            ol {
-                margin: 0;
-                padding: 0 0 0 15px;
-            }
-        }
-
-        span.question-label, span.answer-label, span.question-christian-label, span.reference-label, span.investigation-label, span.section-label {
+        
+        span.section1-label, span.section2-label, span.section3-label, span.section4-label, span.section5-label, span.section-label {
             font-family: $font-post-meta;
             color: #ffffff;
             padding: 2px 7px;
         }
 
-        div.question-label-wrapper {
-            margin: 35px 0 0 0;
-            span.question-label {
+        div.section1-label-wrapper {
+            margin: 0 0 5px 0;
+            span.section1-label {
                 background-color: #FF6961;
             }
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         }
 
-        div.answer-label-wrapper {
-            margin: 30px 0 0 0;
-            span.answer-label {
-                background-color: #FFB347;
+        div.section2-label-wrapper {
+            margin: 25px 0 5px 0;
+            span.section2-label {
+                background-color: rgb(252, 156, 23);
             }
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         }
 
-        div.question-christian-wrapper {
-            margin: 30px 0 0 0;
-            span.question-christian-label {
+        div.section3-label-wrapper {
+            margin: 0 0 5px 0;
+            span.section3-label {
                 background-color: #966FD6;
             }
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         }
         
-        div.reference-label-wrapper {
+        div.section4-label-wrapper {
             margin: 20px 0 0 0;
-            span.reference-label {
-                background-color: #77DD77;
+            span.section4-label {
+                background-color: #29AB87;
             }
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         }
 
-        div.investigation-wrapper {
+        div.section5-label-wrapper {
             margin: 30px 0 0 0;
-            span.investigation-label {
-                background-color: #779ECB;
+            span.section5-label {
+                background-color: #0077BE;
             }
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         }
 
         div.section-wrapper {
@@ -162,6 +245,7 @@
             span.section-label {
                 background-color: $sec-bg-color;
             }
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
         }
         
         .more-button-wrapper {

@@ -1,0 +1,134 @@
+---
+layout: post
+title:  "CIFAR-100: Neural Network in Julia using Flux.jl"
+date:   2018-3-3 1:00:00 +0800
+categories: Statistics Distributions Sampling Survey
+comments: true
+---
+The advancement of artificial intelligence is one of the
+<p>
+    The official CIFAR-100 dataset is available for download at the <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">Alex Krizhevskey's web page</a>.
+    There are three different versions that you can download, either python, matlab or binary version. Since we are using Julia, our only option is the binary version.
+    Fortunately, like in python/r keras, CIFAR-100 also has interface in Julia through the <a href="https://juliaml.github.io/MLDatasets.jl/latest/" target="_blank">MLDatasets.jl</a> package. 
+    <div class="section1-label-wrapper">
+        <span class="section1-label">Package Installation</span>
+    </div>
+    To setup the required libraries for this article, run the following code:
+    <script src="https://gist.github.com/alstat/a4feb63de2e0ce086069711fd2ec0d3d.js"></script>
+    <div class="section2-label-wrapper">
+        <span class="section2-label">Download Data</span>
+    </div>
+    Now that we have <a href="https://juliaml.github.io/MLDatasets.jl/latest/" target="_blank">MLDatasets.jl</a> package installed, 
+    let's proceed and download the CIFAR-100, and assign it to the appropriate variable as follows:
+    <script src="https://gist.github.com/alstat/5df5a88cb7761dcf01683e56c1ee9c93.js"></script>
+    The above code will prompt the user whether to download the dataset or not, simply type <code>y</code> and hit enter to download.
+    In case you wonder, the above lines will save the dataset so that the next time you run it, it will just load the file instead of downloading it again.
+</p>
+<p>
+    There are two training labels for CIFAR-100 if you notice above, the <i>coarse</i> (the super class, e.g. flowers) and the <i>fine</i> (the class, e.g. aquarium fish, flatfish, ray, etc.).
+    For our case, we'll stick with the fine class. 
+    <div class="section3-label-wrapper">
+        <span class="section3-label">Preliminary Investigation</span>
+    </div>
+    In order to proceed with modeling, we need to do some data preparation and that begins with the initial investigation of the meta data.
+    Let's check the dimension and type of our dataset.
+    <script src="https://gist.github.com/alstat/b7a1128f193148eee4078e85e1c623ab.js"></script>
+    Hence the input image we have is a 32 by 32 in resolution with 3 channels (for red, green, and blue), and there are 50,000 of these. In order
+    to view the first array of our <code>x_train</code>, run <code>x_train[:, :, :, 1]</code>. Of course it's required (at least for me) to view the image,
+    this will give us better understanding of how these arrays pixel translate into an image.
+    <script src="https://gist.github.com/alstat/b010fc7862e3f5ce45b5ba9372eb4818.js"></script>
+    <div class="figure-wrapper">
+        <img class="figures" src="/assets/images/nn-in-julia-using-fluxjl/img1.png">
+        <div class="figure-caption">
+            <span class="website-label">
+                العلم
+            </span>
+            <span class="caption">
+                Fig 1: Another approach of visualizing the empirical distribution of the sampled datasets.
+            </span>
+        </div>
+    </div> 
+    Over emphasized, yeah that's what I thought as well. We need to view the actual size of the image, and by default Julia is not equipped to that.
+    At this point, we need to load the Images.jl package. We will not use any functions in it, but by simply loading this package it will automatically
+    view the image in its actual form. If that's the case, we can loop over the first 200 images as shown below:
+    <script src="https://gist.github.com/alstat/0bfbdfd9b5a7ee3136f02d3730dbf5c2.js"></script>
+    <div class="figure-wrapper">
+            <img class="figures" src="/assets/images/nn-in-julia-using-fluxjl/img2.png">
+            <div class="figure-caption">
+                <span class="website-label">
+                    العلم
+                </span>
+                <span class="caption">
+                    Fig 2: Another approach of visualizing the empirical distribution of the sampled datasets.
+                </span>
+            </div>
+        </div> 
+    <div class="section4-label-wrapper">
+        <span class="section4-label">Data Preparation</span>
+    </div>
+    <script src="https://gist.github.com/alstat/e13cb240ac9be2d9822fb83e4836f53a.js"></script>
+    <div class="section5-label-wrapper">
+        <span class="section5-label">Modeling and Prediction</span>
+    </div>
+    <script src="https://gist.github.com/alstat/edf68b86f174e2d67c8a5a11ef6af27a.js"></script>
+</p>
+
+
+
+Accurate inference of our population from our sample is the main interest of Statistics and Machine Learning.
+The goal is to have a random sample that well represents the population, that is, our inference is subject to some tolerable errors. 
+Errors in exchange of surveying small number of respondence over censusing the whole population. Having said, 
+it is therefore important to understand the concept behind survey sampling to properly interpret the statistical methodologies 
+we used (e.g. hypothesis testing), which needless to say, are heavily tied up into these basic concepts. One such concept that we are going to 
+tackle in this article is the <b>sampling distribution</b>. Sampling distribution is one of the basis of why survey works.
+<script src="https://gist.github.com/alstat/4b2c2e53949c6eab9d46a0a5cd33d3ed.js"></script>
+<p>
+    <div class="scenario-label-wrapper">
+        <span class="scenario-label">Scenario</span>
+    </div>
+    Consider the case where we want to estimate the average height of the students in a university. Suppose out of 1500 
+    students in the university, we surveyed 100 students only. Suppose further, the sample mean we obtain is 5.456 inches. This is the average 
+    height of the students in our random sample. The question is, how do we relate the sampling distribution to our estimate?
+    Well the relationship is evident once we do resampling as stated below.
+    <div class="quote with-bottom-border">
+        In theory, if we were to do resampling from our population infinitely and we take the sample estimate of each resample, 
+        the overall mean of these sample estimates will converge to the true parameter.
+    </div>
+    The distribution of the sample estimates in this case is referred to as the <i>sampling</i> distribution. 
+    Therefore, if we extend the scenario and proceed with the resampling from our population, say 15 resamples each of
+    size 100 (i.e. 100 samples for each resample), we expect the sample mean of our sampling distribution to converge to the true parameter
+    up to some significant values. The following figure is the histogram with empirical density estimate of the possible data we might get.
+    <div class="figure-wrapper">
+        <img class="figures" src="/assets/images/random_samples.svg"/>
+        <div class="figure-caption">
+            <span class="website-label">
+                العلم
+            </span>
+            <span class="caption">
+                Fig 1: The possible resamples from the population of the height of the students in the university.
+            </span>
+        </div>
+    </div> 
+    From the above figure, we can subjectively conclude that the mean of the samples is around 5.5. Indeed, because that's 
+    the true parameter we assigned in simulating these datasets. The sample mean of the above resamples are given below:
+    <div class="quote" style="text-align:center;">
+            5.456, 5.490, 5.511, 5.472, 5.467, 5.531, 5.519, <br> 5.481, 5.507, 5.511, 5.525, 5.521, 5.524, 5.474, 5.486
+    </div>
+
+    Using the sampling distribution of these estimates we found out the mean (overall mean) to be 5.498 which is equivalent to 5.5 
+    under 0.002 error. Now let's consider the sampling distribution of the sample variance of the above dataset. This time let's
+    increase the number of resample to 10,000 and see the corresponding sampling distribution.
+    
+    <div class="figure-wrapper">
+        <img class="figures" src="/assets/images/density_boxplot.svg"/>
+        <div class="figure-caption">
+            <span class="website-label">
+                العلم
+            </span>
+            <span class="caption">
+                Fig 2: Another approach of visualizing the empirical distribution of the sampled datasets.
+            </span>
+        </div>
+    </div> 
+    <script src="https://gist.github.com/alstat/b12ac7e6f2837e41fd7f20546607da6b.js"></script>
+</p>
